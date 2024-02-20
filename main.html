@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Page Title</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  /* Custom Styles */
+  /* Add your custom styles here */
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+  }
+
+  /* Header */
+  .header {
+    background-color: teal;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Content */
+  .container {
+    display: flex;
+    flex: 1;
+    overflow: hidden; /* Prevent content overflow */
+    flex-direction: column; /* Stack children vertically */
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+  }
+
+  .column-left {
+    width: 15%;
+    padding: 10px;
+    border: 1px solid black; /* Thin border */
+    overflow-y: auto; /* Enable scrolling for long content */
+  }
+
+  .column-left button {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: transparent;
+    color: #555;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .column-left button:hover {
+    background-color: #f1f1f1;
+  }
+
+  .column-left button.active {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .column-middle {
+    width: 65%;
+    padding: 10px;
+    border: 1px solid black; /* Thin border */
+    overflow-y: auto; /* Enable scrolling for long content */
+  }
+  
+
+  .column-right {
+    width: 20%;
+    padding: 10px;
+    border: 1px solid black; /* Thin border */
+    overflow-y: auto; /* Enable scrolling for long content */
+  }
+
+  /* Footer */
+  .footer {
+    background-color: teal;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>W3Schools</h1>
+</div>
+
+<!-- Content -->
+<div class="container">
+  <div class="content">
+    <div class="column-left">
+      <button class="w3-bar-item w3-button" onclick="loadContent('htmlContent.html')">HTML</button>
+      <button class="w3-bar-item w3-button" onclick="loadContent('cssContent.html')">CSS</button>
+      <button class="w3-bar-item w3-button" onclick="loadContent('javascriptContent.html')">JavaScript</button>
+      <button class="w3-bar-item w3-button" onclick="loadContent('phpContent.html')">PHP</button>
+    </div>
+    <div class="column-middle" id="centerColumn">
+      <div id="centerContent">
+        <h2>Welcome to our website</h2>
+        <p> you can find resources and tutorials for HTML, CSS, JavaScript, and PHP.</p>
+      </div>
+    </div>
+    <div class="column-right">
+      <div id="adContainer"></div>
+      <script>
+        function showRandomAd() {
+          const ads = [
+            'ad1.png',
+            'ad2.png',
+            'ad3.png',
+            'ad4.png'
+          ];
+          const randomAd = ads[Math.floor(Math.random() * ads.length)];
+          document.getElementById('adContainer').innerHTML = `<img src="${randomAd}" alt="Random Ad" width="80%">`;
+        }
+        showRandomAd();
+      </script>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p></p>
+</div>
+
+<script>
+  function loadContent(filename) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("centerContent").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", filename, true);
+    xhttp.send();
+  }
+</script>
+
+</body>
+</html>
